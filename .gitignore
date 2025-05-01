@@ -1,0 +1,28 @@
+# Node.js
+node_modules/
+pnpm-lock.yaml
+
+# Backend (Express)
+backend/node_modules/
+backend/.env
+backend/logs/
+backend/dist/
+
+# Frontend (React)
+frontend/node_modules/
+frontend/.env
+frontend/build/
+frontend/.cache/
+frontend/.next/
+
+# Archivos de sistema (macOS, Windows, etc.)
+.DS_Store
+Thumbs.db
+
+# Archivos temporales de editor
+.vscode/
+.idea/
+*.swp
+
+# Archivos de logs
+*.log

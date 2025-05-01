@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>No deberías estar aquí</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .terminal {
+      text-align: center;
+      animation: flicker 2s infinite alternate;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #00cc00;
+      margin-top: 0.5rem;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      height: 20px;
+      background: #00ff00;
+      animation: blink 1s infinite;
+      vertical-align: bottom;
+      margin-left: 5px;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.98; }
+      70% { opacity: 0.95; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal">
+    <h1>NO DEBERÍAS ESTAR AQUÍ<span class="cursor"></span></h1>
+    <p>Este sector está fuera de los límites autorizados.</p>
+    <p>Tu acceso ha sido registrado.</p>
+  </div>
+</body>
+</html>

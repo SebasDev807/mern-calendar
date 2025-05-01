@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(ellipse at center, #0f0f0f 0%, #000000 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .container {
+    text-align: center;
+    z-index: 2;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    color: #ff4e50;
+    margin-bottom: 0.5em;
+    letter-spacing: 1px;
+  }
+  
+  p {
+    font-size: 1.3rem;
+    color: #ccc;
+    margin-bottom: 1em;
+  }
+  
+  .code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    color: #999;
+    border-top: 1px solid #333;
+    padding-top: 0.5em;
+    opacity: 0.8;
+  }
+  
+  /* Efecto de líneas de escaneo */
+  .scan-lines {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.02),
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    animation: scan 2s linear infinite;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  @keyframes scan {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 100%;
+    }
+  }
+  

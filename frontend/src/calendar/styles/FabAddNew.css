@@ -1,0 +1,27 @@
+@reference 'tailwindcss';
+
+.fabBtn{
+    @apply cursor-pointer
+           rounded-full
+         bg-slate-800
+         hover:bg-slate-900 
+           transition-colors 
+           fixed
+           bottom-15 
+           right-15 p-5
+         text-white z-10
+}
+
+.fabDeleteBtn{
+  @apply cursor-pointer
+         rounded-full
+       bg-red-800
+       hover:bg-red-900 
+        transition-colors 
+        fixed
+        bottom-15 
+        left-15
+        p-5
+      text-white 
+        z-10
+}
