@@ -1,5 +1,4 @@
-import { Response } from "express"
-import { Request } from "../interfaces";
+import { Request, Response } from "../interfaces";
 import { UserModel as User } from "../models/user.model";
 import { compareSync } from "bcryptjs";
 import { generateJwt } from "../utils";
@@ -10,19 +9,15 @@ const register = async (req: Request, res: Response) => {
 
     try {
 
-        const error = new Error();
 
         const existUser = await User.findOne({
             $or: [{ email }, { name }]
         });
 
-        console.log({ existUser });
-
         if (existUser) {
-            error.message = `Ya existe el usuario.`
 
             res.status(409).json({
-                error: error.message
+                error: `Ya existe el usuario.`
             })
 
             return;
@@ -51,18 +46,15 @@ const login = async (req: Request, res: Response) => {
 
     const { email, password } = req.body;
 
-    const error = new Error();
-
     try {
 
         const user = await User.findOne({ email });
 
         if (!user) {
 
-            error.message = `No se encontro el usuario`
 
             res.status(404).json({
-                error: error.message
+                error: `No se encontro el usuario`
             });
 
             return;
@@ -77,10 +69,13 @@ const login = async (req: Request, res: Response) => {
             return;
         }
 
-        const token = generateJwt({ uid: user._id });
+        //Generar JWT
+        const token = generateJwt({ uid: user.id, name: user.name });
 
         res.json({
-            user,
+            ok: true,
+            uid: user.id,
+            name: user.name,
             token
         })
 
@@ -91,12 +86,27 @@ const login = async (req: Request, res: Response) => {
     }
 }
 
-const renew = (req: Request, res: Response) => {
+const revalidateToken = (req: Request, res: Response) => {
 
-    res.json({
-        ok: true,
-        msg: 'login'
-    })
+    const { uid, name } = req;
+
+    try {
+
+        const token = generateJwt({ uid, name });
+
+        res.json({
+            ok: true,
+            uid, name,
+            token
+        });
+
+    } catch (error) {
+        console.error(`[revalidateToken] ${error}`);
+        res.status(500).json({
+            error: `Algo salio mal`
+        })
+
+    }
 }
 
 
@@ -104,6 +114,6 @@ const renew = (req: Request, res: Response) => {
 export {
     register,
     login,
-    renew
+    revalidateToken
 
 }

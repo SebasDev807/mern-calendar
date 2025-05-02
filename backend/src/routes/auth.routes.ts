@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { login, register, renew } from '../controllers/auth.controller';
+import { login, register, revalidateToken } from '../controllers/auth.controller';
 import { body } from 'express-validator';
 import { validateFields } from '../middlewares/validate-fields';
 
@@ -23,8 +23,6 @@ authRouter.post('/register', [
 ], register);
 
 
-
-
 authRouter.post('/login', [
 
     body('email')
@@ -37,4 +35,4 @@ authRouter.post('/login', [
     validateFields
 ], login);
 
-authRouter.get('/renew', renew)
+authRouter.get('/renew', revalidateToken)

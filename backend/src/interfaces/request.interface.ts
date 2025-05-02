@@ -1,6 +1,7 @@
 import express from 'express';
-import { User } from './user.interface';
+import { ObjectId } from 'mongoose';
 
 export interface Request extends express.Request {
-    user?: User
+    uid?: ObjectId;
+    name?: string;
 }
